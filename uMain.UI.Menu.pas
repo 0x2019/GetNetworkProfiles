@@ -112,14 +112,13 @@ begin
 
   if not Assigned(F.redResult) then Exit;
 
-  LockWindowUpdate(F.Handle);
+  F.redResult.Lines.BeginUpdate;
   try
     F.redResult.Lines.Text := GetNetworkList(F.FShowAllNetworks);
     UI_Format_Result(F);
     UI_UpdateMenu(F);
   finally
-  LockWindowUpdate(0);
-  F.redResult.Invalidate;
+    F.redResult.Lines.EndUpdate;
   end;
 end;
 
