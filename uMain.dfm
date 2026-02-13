@@ -2937,6 +2937,7 @@ object frmMain: TfrmMain
     MenuSupport.Font.Height = -11
     MenuSupport.Font.Name = 'Segoe UI'
     MenuSupport.Font.Style = []
+    SkinDirectory = 'c:\Skins'
     SkinName = 'GPlus (internal)'
     SkinInfo = '15'
     ThirdParty.ThirdEdits = ' '#13#10
@@ -3012,6 +3013,13 @@ object frmMain: TfrmMain
       object mmuAlwaysOnTop: TMenuItem
         Caption = '&Always On Top'
         OnClick = mmuAlwaysOnTopClick
+      end
+      object N7: TMenuItem
+        Caption = '-'
+      end
+      object mmuShowAll: TMenuItem
+        Caption = '&Show All Networks'
+        OnClick = mmuShowAllClick
       end
     end
     object mmuTool: TMenuItem

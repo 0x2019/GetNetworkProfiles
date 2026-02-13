@@ -6,7 +6,7 @@ uses
   Winapi.Windows, System.SysUtils, ActiveX, ComObj, IpHlpApi, IpTypes, WinSock2,
   uNetworkList_TLB;
 
-function GetNetworkList: string;
+function GetNetworkList(ShowAllNetworks: Boolean = False): string;
 
 implementation
 
@@ -184,7 +184,7 @@ begin
   end;
 end;
 
-function GetNetworkList: string;
+function GetNetworkList(ShowAllNetworks: Boolean): string;
 var
   NLM: INetworkListManager;
   EnumNetworks: IEnumNetworks;
@@ -292,7 +292,10 @@ begin
     OleCheck(CoInitializeEx(nil, COINIT_APARTMENTTHREADED));
     try
       NLM := CoNetworkListManager.Create;
-      EnumNetworks := NLM.GetNetworks(NLM_ENUM_NETWORK_CONNECTED);
+      if ShowAllNetworks then
+        EnumNetworks := NLM.GetNetworks(NLM_ENUM_NETWORK_ALL)
+      else
+        EnumNetworks := NLM.GetNetworks(NLM_ENUM_NETWORK_CONNECTED);
 
       while True do
       begin

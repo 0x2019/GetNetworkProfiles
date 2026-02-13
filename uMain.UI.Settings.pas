@@ -60,6 +60,7 @@ begin
 
     F.FAlwaysOnTop := xIni.ReadBool('Main', 'AlwaysOnTop', False);
     UI_AlwaysOnTop(F, False);
+    F.FShowAllNetworks := xIni.ReadBool('Main', 'ShowAllNetworks', False);
 
   finally
     xIni.Free;
@@ -89,6 +90,7 @@ begin
     end;
 
     xIni.WriteBool('Main', 'AlwaysOnTop', F.FAlwaysOnTop);
+    xIni.WriteBool('Main', 'ShowAllNetworks', F.FShowAllNetworks);
 
     xIni.UpdateFile;
   finally

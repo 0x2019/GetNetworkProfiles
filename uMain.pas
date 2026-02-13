@@ -55,6 +55,8 @@ type
     mmuCMDNetSanb: TMenuItem;
     mmuCMDIPCRN: TMenuItem;
     mmuRefresh: TMenuItem;
+    N7: TMenuItem;
+    mmuShowAll: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mmuAboutClick(Sender: TObject);
@@ -70,11 +72,13 @@ type
     procedure mmuPSClick(Sender: TObject);
     procedure mmuExitClick(Sender: TObject);
     procedure mmuRefreshClick(Sender: TObject);
+    procedure mmuShowAllClick(Sender: TObject);
   private
     procedure ChangeMessageBoxPosition(var Msg: TMessage); message mbMessage;
     procedure WMClipboardUpdate(var Msg: TMessage); message WM_CLIPBOARDUPDATE;
   public
     FAlwaysOnTop: Boolean;
+    FShowAllNetworks: Boolean;
   end;
 
 var
@@ -175,6 +179,11 @@ end;
 procedure TfrmMain.mmuSaveAsClick(Sender: TObject);
 begin
   UI_SaveAs(Self);
+end;
+
+procedure TfrmMain.mmuShowAllClick(Sender: TObject);
+begin
+  UI_ShowAllNetworks(Self);
 end;
 
 end.

@@ -15,6 +15,7 @@ procedure UI_SaveAs(AForm: TObject);
 // View
 procedure UI_Refresh(AForm: TObject);
 procedure UI_AlwaysOnTop(AForm: TObject; Toggle: Boolean = True);
+procedure UI_ShowAllNetworks(AForm: TObject);
 
 // Tool
 procedure UI_ClearClipboard(AForm: TObject);
@@ -55,6 +56,9 @@ begin
                                    IsClipboardFormatAvailable(CF_BITMAP)      or
                                    IsClipboardFormatAvailable(CF_DIB)         or
                                    IsClipboardFormatAvailable(CF_HDROP);
+
+  if Assigned(F.mmuShowAll) then
+    F.mmuShowAll.Checked := F.FShowAllNetworks;
 end;
 
 procedure UI_SaveAs(AForm: TObject);
@@ -110,7 +114,7 @@ begin
 
   LockWindowUpdate(F.Handle);
   try
-    F.redResult.Lines.Text := GetNetworkList;
+    F.redResult.Lines.Text := GetNetworkList(F.FShowAllNetworks);
     UI_Format_Result(F);
     UI_UpdateMenu(F);
   finally
@@ -136,6 +140,17 @@ begin
 
   if Assigned(F.mmuAlwaysOnTop) then
     F.mmuAlwaysOnTop.Checked := F.FAlwaysOnTop;
+end;
+
+procedure UI_ShowAllNetworks(AForm: TObject);
+var
+  F: TfrmMain;
+begin
+  if not (AForm is TfrmMain) then Exit;
+  F := TfrmMain(AForm);
+
+  F.FShowAllNetworks := not F.FShowAllNetworks;
+  UI_Refresh(F);
 end;
 
 procedure UI_ClearClipboard(AForm: TObject);
