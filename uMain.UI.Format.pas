@@ -161,7 +161,7 @@ begin
           if SameText(Value, CValueTrue) then
             ValueColor := clGreen
           else if SameText(Value, CValueFalse) then
-            ValueColor := clOlive
+            ValueColor := clRed
 
           else if SameText(Key, CKeyCategory) then
           begin
@@ -179,7 +179,7 @@ begin
           else if Key.Contains(CTokenConnectivityText) then
           begin
             if Value.Contains(CConnInternet) then ValueColor := clGreen
-            else if Value.Contains(CConnDisconnected) then ValueColor := clOlive
+            else if Value.Contains(CConnDisconnected) then ValueColor := clRed
             else if Value <> '' then ValueColor := KeyColor;
           end
 
